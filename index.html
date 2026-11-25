@@ -8,6 +8,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Mandatory Force Join Verification Pop-up -->
+    <div id="verify-modal" class="verify-overlay">
+        <div class="verify-card">
+            <div class="verify-icon">⚠️</div>
+            <h2 class="verify-title">Verification Required</h2>
+            <p class="verify-subtitle">Must join GTA 6 Miner Official Social Media</p>
+
+            <div class="verify-links">
+                <a href="https://t.me/Onlineearning785363" target="_blank" class="verify-link-btn" onclick="markLinkClicked('channel')">
+                    <div class="link-left">
+                        <span class="tg-circle-icon">✈️</span>
+                        <span>Official Telegram Channel</span>
+                    </div>
+                    <span class="arrow-right">›</span>
+                </a>
+
+                <a href="https://t.me/Onlineearningchat5" target="_blank" class="verify-link-btn" onclick="markLinkClicked('group')">
+                    <div class="link-left">
+                        <span class="tg-circle-icon">✈️</span>
+                        <span>Official Community Group</span>
+                    </div>
+                    <span class="arrow-right">›</span>
+                </a>
+            </div>
+
+            <p id="verify-error-msg" class="verify-error"></p>
+
+            <button id="verify-submit-btn" class="verify-action-btn" onclick="handleVerifyCheck()">
+                Verify
+            </button>
+        </div>
+    </div>
+
     <!-- Dark Glassmorphism Overlay over bg.png -->
     <div class="bg-overlay"></div>
 
@@ -30,7 +63,7 @@
         <!-- Main Content Area -->
         <main class="content-area">
             
-            <!-- TAB 1: MINE (Main Mining Dashboard) -->
+            <!-- TAB 1: MINE -->
             <section id="tab-mine" class="tab-content active">
                 <div class="balance-card">
                     <span class="balance-label">TOTAL BALANCE</span>
@@ -44,7 +77,6 @@
                     </div>
                 </div>
 
-                <!-- Center Mining Visual & Timer -->
                 <div class="mining-hub">
                     <div class="coin-glow-ring">
                         <img src="gta-coin.png" alt="GTA Token" class="hero-coin" id="hero-coin">
@@ -69,7 +101,6 @@
                     </div>
                 </div>
 
-                <!-- Primary Action Button -->
                 <button id="dig-btn" class="dig-button" onclick="handleDigAction()">
                     START MINING
                 </button>
@@ -99,7 +130,7 @@
                 </div>
             </section>
 
-            <!-- TAB 5: RANK (Leaderboard) -->
+            <!-- TAB 5: RANK -->
             <section id="tab-rank" class="tab-content">
                 <h2 class="section-title">TOP MINERS LEADERBOARD</h2>
                 <div class="glass-card">
