@@ -1,3 +1,372 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #09090d;
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(9, 9, 13, 0.72) 0%, rgba(9, 9, 13, 0.92) 100%);
+    z-index: 0;
+}
+
+.app-container {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px 86px 16px;
+}
+
+/* Header */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 10px 14px;
+    backdrop-filter: blur(10px);
+    margin-bottom: 16px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff9900;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.level-badge {
+    font-size: 11px;
+    color: #ffb700;
+    font-weight: 600;
+}
+
+.brand-logo {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-size: 14px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ff7b00, #ffd000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-tagline {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    color: #a4a6b8;
+}
+
+/* Tab Content Switching */
+.content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.25s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Balance Card */
+.balance-card {
+    background: rgba(22, 21, 41, 0.75);
+    border: 1px solid rgba(255, 166, 0, 0.28);
+    border-radius: 20px;
+    padding: 18px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    margin-bottom: 18px;
+}
+
+.balance-label {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    color: #a4a6b8;
+    font-weight: 600;
+}
+
+.balance-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.coin-icon-lg {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.balance-amount {
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.coin-symbol {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffa200;
+}
+
+.total-mined-info {
+    font-size: 12px;
+    color: #8b8d9e;
+}
+
+/* Mining Hub */
+.mining-hub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 18px 0;
+}
+
+.coin-glow-ring {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    padding: 8px;
+    background: radial-gradient(circle, rgba(255, 153, 0, 0.3) 0%, rgba(255, 0, 128, 0.1) 70%, transparent 100%);
+    border: 2px solid rgba(255, 174, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    box-shadow: 0 0 30px rgba(255, 145, 0, 0.25);
+}
+
+.coin-glow-ring.mining-active {
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(255, 145, 0, 0.3); }
+    50% { transform: scale(1.04); box-shadow: 0 0 45px rgba(255, 145, 0, 0.65); }
+}
+
+.hero-coin {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.mining-stats-box {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 14px;
+}
+
+.stat-pill {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-label {
+    font-size: 10px;
+    color: #8b8d9e;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.status-ready { color: #2ecc71; }
+.status-mining { color: #ffa200; }
+
+.timer-container {
+    width: 100%;
+    text-align: center;
+}
+
+.timer-text {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff7b00, #ffd000);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+/* Primary Button */
+.dig-button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #ff7b00 0%, #ffa200 100%);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(255, 136, 0, 0.35);
+}
+
+.dig-button.mining-in-progress {
+    background: rgba(255, 255, 255, 0.12);
+    color: #a4a6b8;
+    box-shadow: none;
+}
+
+.dig-button.claim-ready {
+    background: linear-gradient(90deg, #00b09b, #96c93d);
+    box-shadow: 0 8px 24px rgba(0, 176, 155, 0.4);
+}
+
+/* Other Tabs Cards */
+.section-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffb700;
+    margin-bottom: 14px;
+    text-align: center;
+}
+
+.glass-card {
+    background: rgba(22, 21, 41, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+}
+
+.placeholder-text {
+    color: #a4a6b8;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 24px);
+    max-width: 456px;
+    background: rgba(16, 15, 30, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 6px 4px;
+    backdrop-filter: blur(14px);
+    z-index: 100;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: #8b8d9e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 2px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    background: rgba(255, 145, 0, 0.18);
+    color: #ffa200;
+}
+
+.nav-icon {
+    font-size: 17px;
+}
+
+.nav-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
 /* === Force Join Verification Pop-up === */
 .verify-overlay {
     position: fixed;
@@ -116,8 +485,4 @@
     font-weight: 700;
     cursor: pointer;
     box-shadow: 0 6px 20px rgba(255, 136, 0, 0.35);
-}
-
-.verify-action-btn:active {
-    transform: scale(0.98);
 }
