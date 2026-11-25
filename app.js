@@ -17,10 +17,63 @@ let state = {
     balance: parseFloat(localStorage.getItem('gta_balance')) || 0,
     totalMined: parseFloat(localStorage.getItem('gta_total_mined')) || 0,
     miningStartTime: parseInt(localStorage.getItem('gta_mining_start')) || null,
-    isClaimReady: false
+    isClaimReady: false,
+    isVerified: localStorage.getItem('gta_social_verified') === 'true',
+    clickedChannel: false,
+    clickedGroup: false
 };
 
 let timerInterval = null;
+
+// Force Join Verification Check on Startup
+function initVerificationGate() {
+    const modal = document.getElementById('verify-modal');
+    if (!modal) return;
+
+    if (state.isVerified) {
+        modal.classList.add('hidden');
+    } else {
+        modal.classList.remove('hidden');
+    }
+}
+
+function markLinkClicked(type) {
+    if (tg && tg.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred('light');
+    }
+    const buttons = document.querySelectorAll('.verify-link-btn');
+    if (type === 'channel') {
+        state.clickedChannel = true;
+        if (buttons[0]) buttons[0].classList.add('clicked');
+    } else if (type === 'group') {
+        state.clickedGroup = true;
+        if (buttons[1]) buttons[1].classList.add('clicked');
+    }
+    document.getElementById('verify-error-msg').textContent = '';
+}
+
+function handleVerifyCheck() {
+    const errorEl = document.getElementById('verify-error-msg');
+    const submitBtn = document.getElementById('verify-submit-btn');
+
+    if (!state.clickedChannel || !state.clickedGroup) {
+        if (tg && tg.HapticFeedback) {
+            tg.HapticFeedback.notificationOccurred('error');
+        }
+        errorEl.textContent = 'Please join both the Channel & Group first!';
+        return;
+    }
+
+    submitBtn.textContent = 'Verifying...';
+    setTimeout(() => {
+        state.isVerified = true;
+        localStorage.setItem('gta_social_verified', 'true');
+        document.getElementById('verify-modal').classList.add('hidden');
+        if (tg && tg.HapticFeedback) {
+            tg.HapticFeedback.notificationOccurred('success');
+        }
+    }, 800);
+}
 
 // Load User Profile from Telegram
 function initUserProfile() {
@@ -138,6 +191,8 @@ function updateMiningLoop() {
 
 // Handle Primary Button Click
 function handleDigAction() {
+    if (!state.isVerified) return;
+
     if (tg && tg.HapticFeedback) {
         tg.HapticFeedback.impactOccurred('medium');
     }
@@ -163,6 +218,8 @@ function handleDigAction() {
 
 // Bottom Navigation Tab Switcher
 function switchTab(tabName, buttonEl) {
+    if (!state.isVerified) return;
+
     if (tg && tg.HapticFeedback) {
         tg.HapticFeedback.selectionChanged();
     }
@@ -186,6 +243,7 @@ function switchTab(tabName, buttonEl) {
 
 // Initialize App on Load
 document.addEventListener('DOMContentLoaded', () => {
+    initVerificationGate();
     initUserProfile();
     updateBalanceUI();
     updateMiningLoop();
