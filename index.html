@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GTA 6 MINER</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dark Glassmorphism Overlay over bg.png -->
+    <div class="bg-overlay"></div>
+
+    <div class="app-container">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="user-profile">
+                <img id="user-avatar" src="gta-coin.png" alt="Profile" class="avatar">
+                <div class="user-details">
+                    <span id="user-name" class="username">Player</span>
+                    <span id="user-level" class="level-badge">Lvl 1 • Beginner Miner</span>
+                </div>
+            </div>
+            <div class="brand-logo">
+                <span class="brand-title">GTA 6 MINER</span>
+                <span class="brand-tagline">MINE • INVITE • EARN</span>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            
+            <!-- TAB 1: MINE (Main Mining Dashboard) -->
+            <section id="tab-mine" class="tab-content active">
+                <div class="balance-card">
+                    <span class="balance-label">TOTAL BALANCE</span>
+                    <div class="balance-row">
+                        <img src="gta-coin.png" alt="$GTA" class="coin-icon-lg">
+                        <span id="coin-balance" class="balance-amount">0.00</span>
+                        <span class="coin-symbol">$GTA</span>
+                    </div>
+                    <div class="total-mined-info">
+                        Total Mining Reward: <span id="total-mined">0</span> $GTA
+                    </div>
+                </div>
+
+                <!-- Center Mining Visual & Timer -->
+                <div class="mining-hub">
+                    <div class="coin-glow-ring">
+                        <img src="gta-coin.png" alt="GTA Token" class="hero-coin" id="hero-coin">
+                    </div>
+                    
+                    <div class="mining-stats-box">
+                        <div class="stat-pill">
+                            <span class="stat-label">RATE</span>
+                            <span class="stat-value">100 GTA / 24h</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="stat-label">STATUS</span>
+                            <span id="mining-status" class="stat-value status-ready">READY</span>
+                        </div>
+                    </div>
+
+                    <div class="timer-container">
+                        <div id="countdown-timer" class="timer-text">24:00:00</div>
+                        <div class="progress-bar-bg">
+                            <div id="mining-progress" class="progress-bar-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary Action Button -->
+                <button id="dig-btn" class="dig-button" onclick="handleDigAction()">
+                    START MINING
+                </button>
+            </section>
+
+            <!-- TAB 2: TASKS -->
+            <section id="tab-tasks" class="tab-content">
+                <h2 class="section-title">DAILY & SPECIAL TASKS</h2>
+                <div class="glass-card">
+                    <p class="placeholder-text">Tasks & Daily Check-in system will load here.</p>
+                </div>
+            </section>
+
+            <!-- TAB 3: LEVEL -->
+            <section id="tab-level" class="tab-content">
+                <h2 class="section-title">MINER RANK & LEVELS</h2>
+                <div class="glass-card">
+                    <p class="placeholder-text">Level progression (Beginner to Master Miner) will load here.</p>
+                </div>
+            </section>
+
+            <!-- TAB 4: INVITE -->
+            <section id="tab-invite" class="tab-content">
+                <h2 class="section-title">INVITE FRIENDS • EARN $GTA</h2>
+                <div class="glass-card">
+                    <p class="placeholder-text">Your unique referral link and milestone rewards will load here.</p>
+                </div>
+            </section>
+
+            <!-- TAB 5: RANK (Leaderboard) -->
+            <section id="tab-rank" class="tab-content">
+                <h2 class="section-title">TOP MINERS LEADERBOARD</h2>
+                <div class="glass-card">
+                    <p class="placeholder-text">Weekly & Monthly top miners ranking will load here.</p>
+                </div>
+            </section>
+
+            <!-- TAB 6: WALLET -->
+            <section id="tab-wallet" class="tab-content">
+                <h2 class="section-title">GTA WALLET & BALANCE</h2>
+                <div class="glass-card">
+                    <p class="placeholder-text">Earnings breakdown & 10,000,000 $GTA withdrawal status will load here.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom 6-Tab Navigation Bar -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="switchTab('mine', this)">
+                <span class="nav-icon">⛏️</span>
+                <span class="nav-label">MINE</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('tasks', this)">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">TASKS</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('level', this)">
+                <span class="nav-icon">👑</span>
+                <span class="nav-label">LEVEL</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('invite', this)">
+                <span class="nav-icon">👥</span>
+                <span class="nav-label">INVITE</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('rank', this)">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-label">RANK</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('wallet', this)">
+                <span class="nav-icon">💰</span>
+                <span class="nav-label">WALLET</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
